@@ -20,7 +20,7 @@ resource "google_compute_instance" "default" {
   name         = "minecraft-vm"
   machine_type = "e2-medium"
   zone         = "asia-northeast1-a"
-  tags         = ["ssh"]
+  tags         = ["ssh","minecraft-fw"]
 
   boot_disk {
     initialize_params {
@@ -59,11 +59,14 @@ resource "google_compute_firewall" "ssh" {
 resource "google_compute_firewall" "minecraft_fw" {
   name    = "minecraft-firewall"
   network = google_compute_network.vpc_network.id
+  direction     = "INGRESS"
+  priority      = 1000
 
   allow {
     protocol = "tcp"
     ports    = ["25565"]
   }
   source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["minecraft-fw"]
 }
 # [END minecraft_fw]
