@@ -24,12 +24,13 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "debian-cloud/debian-12"
     }
   }
 
-  # Install Flask
-  metadata_startup_script = "sudo apt-get update; sudo apt-get install -y default-jre-headless; sudo apt-get install wget; sudo apt-get install -y screen"
+  # Install minecraft
+  # metadata_startup_script = "sudo apt-get update; sudo apt-get install -y default-jre-headless; sudo apt-get install wget; sudo apt-get install -y screen"
+  metadata_startup_script = file("./init.sh") 
 
   network_interface {
     subnetwork = google_compute_subnetwork.default.id
