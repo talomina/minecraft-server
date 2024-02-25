@@ -2,7 +2,7 @@
 ああ
 
    ```sh:
-   git clone https://github.com/talomina/server-on-google-cloud.git
+   git clone https://github.com/talomina/minecraft-server.git
    ```
 
    ```sh:
