@@ -29,7 +29,8 @@ resource "google_compute_instance" "default" {
   }
 
   # Install minecraft
-  metadata_startup_script = "sudo apt-get update; sudo apt-get install -y git" 
+  # metadata_startup_script = "sudo apt-get update; sudo apt-get install -y git" 
+  metadata_startup_script = file("./init.sh") 
 
   network_interface {
     subnetwork = google_compute_subnetwork.default.id
