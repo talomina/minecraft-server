@@ -2,14 +2,14 @@ provider "google" {
 }
 # [START vpc]
 resource "google_compute_network" "vpc_network" {
-  name                    = "my-custom-mode-network"
+  name                    = "my-minecraft-network"
   auto_create_subnetworks = false
   mtu                     = 1460
 }
 # [END vpc]
 # [START subnet]
 resource "google_compute_subnetwork" "default" {
-  name          = "my-custom-subnet"
+  name          = "my-minecraft-subnet"
   ip_cidr_range = "10.0.1.0/24"
   region        = "asia-northeast1"
   network       = google_compute_network.vpc_network.id
